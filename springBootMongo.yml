@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+apiVersion: v1
 kind: ReplicationController
 metadata:
   labels:
@@ -12,10 +12,10 @@ spec:
         name: springboot
     spec:
       containers:
-       image: joshi1992/springboot-k8s
+      - image: joshi1992/springboot-k8s
         name: springboot
-        ports: 
-         name: springboot
+        ports:
+        - name: springboot
           containerPort: 8080      
 ---
 # Node Port Service
@@ -27,7 +27,7 @@ metadata:
   name: springboot
 spec:
   type: NodePort
-  ports: 
+  ports:
     - port: 8080
       targetPort: 8080
   selector:
@@ -50,7 +50,7 @@ spec:
       containers:
       - image: mongo
         name: mongo
-        ports: 
+        ports:
         - name: mongo
           containerPort: 27017
           hostPort: 27017
