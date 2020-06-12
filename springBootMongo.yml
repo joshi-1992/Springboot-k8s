@@ -14,7 +14,7 @@ spec:
       containers:
        image: joshi1992/springboot-k8s
         name: springboot
-        ports: 80
+        ports: 
          name: springboot
           containerPort: 8080      
 ---
@@ -27,7 +27,7 @@ metadata:
   name: springboot
 spec:
   type: NodePort
-  ports: 80
+  ports: 
     - port: 8080
       targetPort: 8080
   selector:
