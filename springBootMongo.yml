@@ -14,7 +14,7 @@ spec:
       containers:
       - image: joshi1992/springboot-k8s
         name: springboot
-        ports:
+        ports: 80
         - name: springboot
           containerPort: 8080      
 ---
@@ -27,7 +27,7 @@ metadata:
   name: springboot
 spec:
   type: NodePort
-  ports:
+  ports: 80
     - port: 8080
       targetPort: 8080
   selector:
@@ -50,7 +50,7 @@ spec:
       containers:
       - image: mongo
         name: mongo
-        ports:
+        ports: 
         - name: mongo
           containerPort: 27017
           hostPort: 27017
