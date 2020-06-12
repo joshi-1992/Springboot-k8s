@@ -11,7 +11,7 @@ node{
     }
     
     stage("Build Docker Image"){
-        sh "docker build -t dockerhandson/springboot-k8s ."
+        sh "docker build -t joshi1992/springboot-k8s ."
         
     }
     
@@ -19,14 +19,14 @@ node{
         withCredentials([string(credentialsId: 'DOCKER_HUB_CREDINIAL', variable: 'DOCKER_HUB_CREDENTIALS')]) {
         sh "docker login -u joshi1992 -p ${DOCKER_HUB_CREDENTIALS}"   
     }
-        sh "docker push joshi1992/dockerhandson/springboot-k8s"
+        sh "docker push joshi1992/springboot-k8s"
     }
     
 }
     
     // Remove local image in Jenkins Server
     stage("Remove Local Image"){
-        sh "docker rmi -f dockerhandson/springboot-k8s"
+        sh "docker rmi -f joshi1992/springboot-k8s"
     }
     
     stage("Deploy to docker swarm cluster"){
