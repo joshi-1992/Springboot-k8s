@@ -1,25 +1,28 @@
 node{
-    stage("Git CheckOut"){
-        git url: 'https://github.com/MithunTechnologiesDevOps/spring-boot-mongo-docker.git',branch: 'master'
+    stage("Git Clone"){
+        git 'https://github.com/joshi-1992/Springboot-k8s.git'
+    }
+
+    stage("Maven Build"){
+        
+        def mavenHOME= tool name: "Maven-3.6.1", type:"maven"
+        def mavenCMD= "${mavenHOME}/bin/mvn"
+        sh "${mavenCMD} clean package"
     }
     
-    stage(" Maven Clean Package"){
-      def mavenHome =  tool name: "Maven-3.6.1", type: "maven"
-      def mavenCMD = "${mavenHome}/bin/mvn"
-      sh "${mavenCMD} clean package"
-    } 
-    
-    stage("Build Dokcer Image") {
-         sh "docker build -t dockerhandson/spring-boot-mongo ."
+    stage("Build Docker Image"){
+        sh "docker build -t dockerhandson/springboot-k8s ."
+        
     }
     
     stage("Docker Push"){
-        withCredentials([string(credentialsId: 'Docker_Hub_Pwd', variable: 'Docker_Hub_Pwd')]) {
-          sh "docker login -u dockerhandson -p ${Docker_Hub_Pwd}"
-        }
-        sh "docker push dockerhandson/spring-boot-mongo"
-        
+        withCredentials([string(credentialsId: 'DOCKER_HUB_CREDINIAL', variable: 'DOCKER_HUB_CREDENTIALS')]) {
+        sh "docker login -u joshi1992 -p ${DOCKER_HUB_CREDENTIALS}"   
     }
+        sh "docker push docker.io/joshi1992/dockerhandson/springboot-k8s"
+    }
+    
+}
     
     // Remove local image in Jenkins Server
     stage("Remove Local Image"){
