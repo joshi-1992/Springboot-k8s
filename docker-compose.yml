@@ -2,7 +2,7 @@ version: '3.1'
 
 services:
   springboot:
-    image: joshi1992/pringboot-k8s:latest
+    image: joshi1992/springboot-k8s:latest
     restart: always # This will be ignored if we deploy in docker swarm
     container_name: springboot
     ports:
