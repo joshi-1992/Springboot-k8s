@@ -12,7 +12,7 @@ spec:
         name: springboot
     spec:
       containers:
-      - image: joshi1992/springboot-k8s
+      - image: springboot-k8s
         name: springboot
         ports:
         - name: springboot
