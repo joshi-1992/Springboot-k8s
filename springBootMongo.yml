@@ -13,6 +13,7 @@ spec:
     spec:
       containers:
        image: joshi1992/springboot-k8s
+        name: springboot
         ports: 80
          name: springboot
           containerPort: 8080      
