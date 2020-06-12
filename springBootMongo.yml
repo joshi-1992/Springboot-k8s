@@ -16,7 +16,7 @@ spec:
         name: springboot
         ports:
         - name: springboot
-          containerPort: 8080      
+          containerPort: 8082      
 ---
 # Node Port Service
 apiVersion: v1
@@ -28,8 +28,8 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - port: 8080
-      targetPort: 8080
+    - port: 8082
+      targetPort: 8082
   selector:
     name: springboot
 ---
